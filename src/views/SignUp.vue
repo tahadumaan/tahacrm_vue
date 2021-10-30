@@ -115,7 +115,7 @@ export default {
                 );
               }
             } else if (error.message) {
-              this.errors.push("Something went wrong. Please try again!");
+              this.errors.push("Something went so wrong. Please try again!");
             }
           });
         this.$store.commit("setLoading", false);
