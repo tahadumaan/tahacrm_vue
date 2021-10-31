@@ -4,7 +4,9 @@
       <div class="column is-12">
         <h1 class="title">Leads</h1>
 
-        <router-link to="/dashboard/leads/add">Add lead</router-link>
+        <router-link to="/dashboard/leads/add" class="button is-info is-light"
+          >Add lead</router-link
+        >
       </div>
 
       <div class="column is-12">
@@ -14,6 +16,7 @@
               <th>Company</th>
               <th>Contact Person</th>
               <th>Status</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -21,6 +24,13 @@
               <td>{{ lead.company }}</td>
               <td>{{ lead.contact_person }}</td>
               <td>{{ lead.status }}</td>
+              <td>
+                <router-link
+                  :to="{ name: 'Lead', params: { id: lead.id } }"
+                  class="button is-primary is-light is-small"
+                  >Details</router-link
+                >
+              </td>
             </tr>
           </tbody>
         </table>
@@ -36,7 +46,7 @@ export default {
   name: "Leads",
   data() {
     return {
-      leads: [],
+      leads: {},
     };
   },
   mounted() {
@@ -46,7 +56,7 @@ export default {
     async getLeads() {
       this.$store.commit("setIsLoading", true);
 
-      axios
+      await axios
         .get("api/v1/leads/")
         .then((response) => {
           this.leads = response.data;

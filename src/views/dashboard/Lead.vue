@@ -3,7 +3,11 @@
     <div class="columns is-multiline">
       <div class="column is-12">
         <h1 class="title">{{ lead.company }}</h1>
-        <router-link to="/" class="button is-light">Edit</router-link>
+        <router-link
+          :to="{ name: 'EditLead', params: { id: this.$route.params.id } }"
+          class="button is-light"
+          >Edit</router-link
+        >
       </div>
       <div class="column is-6">
         <div class="box">
@@ -45,13 +49,13 @@ export default {
   methods: {
     async getLead() {
       this.$store.commit("setIsLoading", true);
-
       const leadID = this.$route.params.id;
 
       await axios
-        .get(`api/v1/leads/${leadID}/`)
+        .get(`/api/v1/leads/${leadID}/`)
         .then((response) => {
           this.lead = response.data;
+          console.log(this.lead);
         })
         .catch((error) => {
           console.log(error);
