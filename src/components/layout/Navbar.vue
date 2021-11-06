@@ -8,7 +8,10 @@
 
     <div class="navbar-menu">
       <div class="navbar-end">
-        <router-link to="/dashboard/leads" class="navbar-item"
+        <router-link
+          v-if="$store.state.isAuthenticated"
+          to="/dashboard/leads"
+          class="navbar-item"
           >Leads</router-link
         >
         <div class="navbar-item">
