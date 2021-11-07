@@ -28,7 +28,7 @@ export default createStore({
         state.isAuthenticated = false;
         state.user.id = 0;
         state.user.username = "";
-        state.teamd.id = 0;
+        state.team.id = 0;
         state.team.name = "";
       }
     },
@@ -46,7 +46,7 @@ export default createStore({
     setUser(state, user) {
       state.user = user;
     },
-    setTeam(self, team) {
+    setTeam(state, team) {
       state.team = team;
       localStorage.setItem("team_id", team.id);
       localStorage.setItem("team_name", team.name);

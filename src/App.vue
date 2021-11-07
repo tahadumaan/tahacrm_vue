@@ -23,13 +23,17 @@ export default {
   },
   beforeCreate() {
     this.$store.commit("initializeStore");
-    console.log(this.$store.state.user);
     if (this.$store.state.token) {
       axios.defaults.headers.common["Authorization"] =
         "Token " + this.$store.state.token;
     } else {
       axios.defaults.headers.common["Authorization"] = "";
     }
+
+    // if (!this.$store.state.team.id) {
+    //   this.$router.push("/dashboard/add-team");
+    // }
+    // this.$router.push("/dashboard/my-account");
   },
 };
 </script>
